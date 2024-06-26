@@ -1,0 +1,148 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .no-decoration {
+            border: none;
+            outline: none;
+            background: none;
+            box-shadow: none;
+            padding: 0;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        .btn-ppt {
+            color: rgb(182, 72, 42) !important;
+            border: 1px solid lightgray !important;
+            background: #f4f4f4 !important;
+        }
+    </style>
+    <title>PictographAI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="d-flex flex-column h-100">
+        <img src="navbar.png">
+        <div class="d-flex flex-row">
+            <div style="width: 1200; height: 675; margin: 20px; position: relative; border: 1px solid lightgray;"
+                class="shadow">
+                <div class="d-flex flex-row align-items-center"
+                    style="position: absolute; left: 30px; top: 20px; width: 1140px; height: 100px; font-size: 60px;">
+                    <input class="no-decoration flex-fill" placeholder="Title"></input>
+                    <img style="height: 50px" src="https://teco.edu/wp-content/themes/teco/images/teco_trans.png">
+                    <img style="height: 60px"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_KIT.svg/2560px-Logo_KIT.svg.png">
+
+                </div>
+
+                <textarea placeholder="Add your text here.." class="no-decoration" id="inputField"
+                    onkeyup="addBullets()"
+                    style="position: absolute; left: 30px; line-height: 1.8em; top: 140px; width: 650px; height: 515px; font-size: 22px;"></textarea>
+                <div class="d-flex justify-content-center align-items-center"
+                    style="position: absolute; left: 690px; top: 140px; width: 480px; height: 505px; background: lightgray;">
+                    <div style="color: gray; font-family: monospace;">Waiting for data to<br /> generate graph ...</div>
+                </div>
+
+            </div>
+            <div class="flex-fill d-flex flex-column shadow"
+                style="padding: 20px; border: 1px solid lightgray; background-color: white; margin: 20px 20px 20px 0px; max-height: 675px;">
+                <h4>Bar Chart Data</h4>
+                <hr />
+                <div id="container" class="flex-fill" style="overflow-y: scroll;">
+
+                </div>
+                <button class="w-100 btn btn-ppt" onclick="addRow()">+</button>
+            </div>
+        </div>
+        <div class="flex-fill w-100 p-3 justify-content-start align-items-center d-flex shadow"
+            style="background: rgb(240, 240, 241); border: 1px solid lightgray">
+            <button onclick="generateGraph()" class="btn btn-ppt"
+                style=" margin-left: 10px; padding-bottom: 20px; width: 190px; height: 100%; font-size: 20px;">🪄
+                <br /><b>Generate Pictograph</b></button>
+        </div>
+    </div>
+
+    <div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        function addRow() {
+            const container = document.getElementById('container');
+            const row = document.createElement('div');
+            row.className = 'row';
+            row.innerHTML = `
+            <div class="d-flex flex-row w-100 mt-3">
+                <input class="no-decoration flex-fill" type="text" placeholder="Name">
+                <input class="no-decoration  flex-fill" type="number" placeholder="Number">
+                <button class="no-decoration btn btn-ppt" onclick="deleteRow(this)"><i class="bi bi-trash"></i></button>
+            </div>
+        `;
+            container.append(row);
+        }
+
+        function deleteRow(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+
+
+        function addBullets() {
+            const inputField = document.getElementById('inputField');
+            const lines = inputField.value.split('\n');
+            let formattedText = '';
+
+            lines.forEach((line, index) => {
+                if (line !== '') {
+                    // Add bullet if the line does not already have one
+                    if (!line.startsWith('•')) {
+                        formattedText += '• ' + line;
+                    } else {
+                        formattedText += line;
+                    }
+                    // Add newline character if it's not the last line
+                    if (index < lines.length - 1) {
+                        formattedText += '\n';
+                    }
+                } else {
+                    // Preserve empty lines
+                    if (index < lines.length - 1) {
+                        formattedText += '\n';
+                    }
+                }
+            });
+
+            inputField.value = formattedText;
+        }
+
+        function generateGraph() {
+            const rows = document.querySelectorAll('.row');
+            const data = [];
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const name = inputs[0].value;
+                const number = inputs[1].value;
+                data.push({ name, number });
+            });
+
+            const csvContent = ""
+                + data.map(e => e.name + "," + e.number).join("\n");
+
+            alert(csvContent)
+        }
+    </script>
+</body>
+
+</html>
