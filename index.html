@@ -172,6 +172,9 @@
         }
 
         function generateGraph() {
+            const title = document.querySelector('.no-decoration.flex-fill').value;
+            const bulletContent = document.getElementById('inputField').value;
+
             const rows = document.querySelectorAll('.row');
             const data = [];
             rows.forEach(row => {
@@ -181,10 +184,77 @@
                 data.push({ name, number });
             });
 
-            const csvContent = ""
-                + data.map(e => e.name + "," + e.number).join("\n");
+            const csvContent = data.map(e => e.name + "," + e.number).join("\n");
 
-            alert(csvContent)
+            // Prepare the payload
+            const payload = {
+                title: title,
+                bulletContent: bulletContent,
+                csvData: csvContent
+            };
+
+            // Send the POST request
+            fetch('/inpaint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Start polling to check if the image is generated
+                    const id = data.id;
+                    showPlaceholder();
+                    pollImageGeneration(id);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function showPlaceholder() {
+            const buttonContainer = document.querySelector('.d-flex.w-100.p-3');
+            const placeholder = document.createElement('div');
+            placeholder.id = 'image-placeholder';
+            placeholder.style.width = '480px';
+            placeholder.style.height = '505px';
+            placeholder.style.background = 'lightgray';
+            placeholder.style.color = 'gray';
+            placeholder.style.fontFamily = 'monospace';
+            placeholder.style.display = 'flex';
+            placeholder.style.alignItems = 'center';
+            placeholder.style.justifyContent = 'center';
+            placeholder.innerText = 'Generating image...';
+
+            buttonContainer.appendChild(placeholder);
+        }
+
+        function pollImageGeneration(id) {
+            const interval = setInterval(() => {
+                fetch(`/generated/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'finished') {
+                            clearInterval(interval);
+                            displayGeneratedImage(data.imageUrl);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }, 3000); // Poll every 3 seconds
+        }
+
+        function displayGeneratedImage(imageUrl) {
+            const placeholder = document.getElementById('image-placeholder');
+            const image = document.createElement('img');
+            image.src = imageUrl;
+            image.style.width = '480px';
+            image.style.height = '505px';
+
+            placeholder.replaceWith(image);
         }
 
         const cards = document.querySelectorAll('.ppt-card');
