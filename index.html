@@ -95,8 +95,8 @@
 
                     </div>
                     <div class="flex-fill d-flex flex-column shadow"
-                        style="padding: 20px; border: 1px solid lightgray; background-color: white; margin: 20px 20px 20px 0px; max-height: 675px;">
-                        <h4>Bar Chart Data</h4>
+                        style="padding: 20px; border: 1px solid lightgray; background-color: rgb(236, 236, 236); margin: 0px 0px 0px 0px; max-height: 715px; border-width: 0px 0px 0px 1px;">
+                        <h5>Bar Chart Data</h5>
                         <hr />
                         <div id="container" class="flex-fill" style="overflow-y: scroll;">
 
@@ -128,9 +128,9 @@
             const row = document.createElement('div');
             row.className = 'row';
             row.innerHTML = `
-            <div class="d-flex flex-row w-100 mt-3">
-                <input class="no-decoration flex-fill" type="text" placeholder="Name">
-                <input class="no-decoration  flex-fill" type="number" placeholder="Number">
+            <div class="d-flex flex-row mt-3 justify-content-between">
+                <input class="no-decoration " type="text" placeholder="Name">
+                <input class="no-decoration" style="width: 100px" type="number" placeholder="Number">
                 <button class="no-decoration btn btn-ppt" onclick="deleteRow(this)"><i class="bi bi-trash"></i></button>
             </div>
         `;
