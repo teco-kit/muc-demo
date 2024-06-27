@@ -95,10 +95,13 @@
 
                     </div>
                     <div class="flex-fill d-flex flex-column shadow"
-                        style="padding: 20px; border: 1px solid lightgray; background-color: rgb(236, 236, 236); margin: 0px 0px 0px 0px; max-height: 715px; border-width: 0px 0px 0px 1px;">
-                        <h5>Bar Chart Data</h5>
+                        style="padding: 20px; border: 1px solid lightgray; background-color: rgb(236, 236, 236); margin: 0px 0px 0px 0px; max-height: 715px; border-width: 0px 0px 0px 1px; overflow: hidden;">
+                        <div class="d-flex flex-row justify-content-between">
+                            <h5>Bar Chart Data</h5>
+                            <button class="btn btn-ppt">Update Chart</i></button>
+                        </div>
                         <hr />
-                        <div id="container" class="flex-fill" style="overflow-y: scroll;">
+                        <div id="container" class="flex-fill" style="overflow-y: scroll; overflow-x: hidden;">
 
                         </div>
                         <button class="w-100 btn btn-ppt" onclick="addRow()">+</button>
