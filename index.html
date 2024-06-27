@@ -46,8 +46,8 @@
     <div class="d-flex flex-column h-100" style="max-height: 100vh;">
         <img src="navbar.png">
         <div class="d-flex flex-row flex-fill">
-            <div style="background-color: rgb(231, 231, 230); width: 150px; overflow-y: scroll;"
-                class="d-flex flex-column align-items-center ">
+            <div style="background-color: rgb(231, 231, 230); overflow-y: scroll; padding-left: 5px; padding-right: 5px;"
+                class="d-flex flex-column align-items-center">
                 <div style="width: 130px; height: 73.1px; background-color: white; "
                     class="ppt-card ppt-card-active d-flex justify-content-center align-items-center">1</div>
                 <div style="width: 130px; height: 73.1px; background-color: white;"
@@ -105,10 +105,9 @@
                     </div>
                 </div>
                 <div class="flex-fill w-100 p-3 justify-content-start align-items-center d-flex"
-                    style="background: rgb(240, 240, 241); border: 1px solid lightgray; border-width: 1px 0px 0px 0px;">
+                    style="background: rgb(240, 240, 241); border: 1px solid lightgray; border-width: 1px 0px 0px 0px; overflow-y: scroll">
                     <button onclick="generateGraph()" class="btn btn-ppt"
-                        style=" margin-left: 10px; padding-bottom: 20px; width: 190px; height: 100%; font-size: 20px;">🪄
-                        <br /><b>Generate Pictograph</b></button>
+                        style=" margin-left: 10px; padding-bottom: 20px; width: 190px; height: 100%; font-size: 20px;"><b>Generate Pictograph</b></button>
                 </div>
             </div>
 
@@ -202,59 +201,9 @@
                 body: JSON.stringify(payload)
             })
                 .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    // Start polling to check if the image is generated
-                    const id = data.id;
-                    showPlaceholder();
-                    pollImageGeneration(id);
-                })
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-        }
-
-        function showPlaceholder() {
-            const buttonContainer = document.querySelector('.d-flex.w-100.p-3');
-            const placeholder = document.createElement('div');
-            placeholder.id = 'image-placeholder';
-            placeholder.style.width = '480px';
-            placeholder.style.height = '505px';
-            placeholder.style.background = 'lightgray';
-            placeholder.style.color = 'gray';
-            placeholder.style.fontFamily = 'monospace';
-            placeholder.style.display = 'flex';
-            placeholder.style.alignItems = 'center';
-            placeholder.style.justifyContent = 'center';
-            placeholder.innerText = 'Generating image...';
-
-            buttonContainer.appendChild(placeholder);
-        }
-
-        function pollImageGeneration(id) {
-            const interval = setInterval(() => {
-                fetch(`/generated/${id}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'finished') {
-                            clearInterval(interval);
-                            displayGeneratedImage(data.imageUrl);
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-            }, 3000); // Poll every 3 seconds
-        }
-
-        function displayGeneratedImage(imageUrl) {
-            const placeholder = document.getElementById('image-placeholder');
-            const image = document.createElement('img');
-            image.src = imageUrl;
-            image.style.width = '480px';
-            image.style.height = '505px';
-
-            placeholder.replaceWith(image);
         }
 
         const cards = document.querySelectorAll('.ppt-card');
