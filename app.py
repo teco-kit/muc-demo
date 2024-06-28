@@ -26,7 +26,7 @@ pipe_2 = StableDiffusionInpaintPipeline.from_pretrained(
 
 key = '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'
 prompt = PromptTemplate.from_template(
-        "provide me with answer of one word about a relevant object to {content}. The object has to be bar shaped and easily recognizable. Like soda cans, food items, buildings, cigarette packs"
+        "provide me with an object with one or two words relevant to this topic: {content}. The object should be a noun, not a concept."
     )
 
 model = OpenAI(openai_api_key = key)
@@ -229,7 +229,7 @@ def Picto():
         guidance_scale=guidance_scale,
         generator=generator,
         num_images_per_prompt=num_samples,
-        strength=0.8,
+        strength=0.9,
     ).images
 
     mask_image = mask_image.convert('L')
