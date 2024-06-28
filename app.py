@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
 import torch
-from diffusers import StableDiffusionInpaintPipeline
+from diffusers import AutoPipelineForInpainting
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image, ImageDraw
@@ -17,16 +17,16 @@ app = Flask(__name__)
 
 # Load your model
 device = "cuda"
-model_path = "stabilityai/stable-diffusion-2-inpainting"
-
-pipe_2 = StableDiffusionInpaintPipeline.from_pretrained(
-    model_path,
-    torch_dtype=torch.float16,
+pipeline = AutoPipelineForInpainting.from_pretrained(
+    "runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16"
 ).to(device)
+pipeline.enable_model_cpu_offload()
+# remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
+pipeline.enable_xformers_memory_efficient_attention()
 
 key = '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'
 prompt = PromptTemplate.from_template(
-        "provide me with an object with one or two words relevant to this topic: {content}. The object should be a noun, not a concept."
+        "extract one object from the following content: {content}. the object should be easy to recognize and paint. answer should be a single word."
     )
 
 model = OpenAI(openai_api_key = key)
@@ -53,8 +53,8 @@ def Chart():
 
     # Assuming the CSV has columns 'name' and 'number'
 
-    var_1 = 'Name'
-    var_2 = 'Number'
+    var_1 = 'Age'
+    var_2 = 'Percent (%)'
     df.columns = [var_1, var_2]
 
     # Create a figure and an axes object
@@ -62,7 +62,7 @@ def Chart():
 
     # Plotting using the axes object
     ax.bar(df[var_1], df[var_2])
-    #ax.set_ylim(0, 100)  # Set y-axis limits
+    ax.set_ylim(0, 100)  # Set y-axis limits
 
     # Add labels using the axes object
     ax.set_xlabel(var_1)
@@ -123,9 +123,10 @@ def Picto():
 
     # Assuming the CSV has columns 'name' and 'number'
 
-    var_1 = 'Name'
-    var_2 = 'Number'
+    var_1 = 'Age'
+    var_2 = 'Percent (%)'
     df.columns = [var_1, var_2 ]
+     
 
     # Create a figure and an axes object
     fig, ax = plt.subplots(figsize=(5.13, 5.13))  # Adjusted figure size for better fit
@@ -138,6 +139,7 @@ def Picto():
     ax.set_xlabel(var_1)
     ax.set_ylabel(var_2)
     ax.set_title(title)
+    ax.set_ylim(0, 100)
 
 
     fig.savefig('chart.png')
@@ -204,7 +206,7 @@ def Picto():
     StablePrompt = chain.invoke({'content': title + bullet_content}) 
     print(StablePrompt)
 
-    prompt=StablePrompt[2:] 
+    prompt="realistic" + StablePrompt[2:] 
     negative_prompt="text, deformed, indistinct"
 
 
@@ -218,18 +220,20 @@ def Picto():
 
     guidance_scale=20
     num_samples = 1
+    steps =30
 
-    generator = torch.Generator(device="cuda").manual_seed(-1) # change the seed to get different results
 
-    images = pipe_2(
+    #generator = torch.Generator(device="cuda").manual_seed(-1) # change the seed to get different results
+
+    images = pipeline(
         prompt=prompt,
         negative_prompt=negative_prompt,
         image=image,
         mask_image=mask_image,
         guidance_scale=guidance_scale,
-        generator=generator,
+        num_inference_steps=steps,
+        #generator=generator,
         num_images_per_prompt=num_samples,
-        strength=0.9,
     ).images
 
     mask_image = mask_image.convert('L')
