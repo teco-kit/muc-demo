@@ -29,7 +29,7 @@ pipeline.enable_xformers_memory_efficient_attention()
 
 key = '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'
 prompt = PromptTemplate.from_template(
-        "extract one object from the following content: {content}. the object should be easy to recognize and paint. your output should only be a single word describing object with no special characters."
+        "extract one object from the following content: {content}. the object should be easy to recognize and paint. your output should only be only one or two words long."
     )
 
 model = OpenAI(openai_api_key = key)
@@ -47,6 +47,8 @@ def Chart():
     title = data.get('title')
     bullet_content = data.get('bulletContent')
     csv_data = data.get('csvData')
+    var_2 = data.get('yAxisLabel')
+    var_1 = data.get('xAxisLabel')
     print (csv_data)
     # Decode CSV data
 
@@ -56,8 +58,8 @@ def Chart():
 
     # Assuming the CSV has columns 'name' and 'number'
 
-    var_1 = 'Age'
-    var_2 = 'Percent (%)'
+    #var_1 = 'Age'
+    #var_2 = 'Percent (%)'
     df.columns = [var_1, var_2]
 
     # Create a figure and an axes object
@@ -65,6 +67,8 @@ def Chart():
 
     # Plotting using the axes object
     ax.bar(df[var_1], df[var_2])
+    if 'percent' in var_2 or '%' in var_2:
+        ax.set_ylim(0, 100)
     #ax.set_ylim(0, 100)  # Set y-axis limits
 
     # Add labels using the axes object
@@ -116,7 +120,8 @@ def Picto():
     title = data.get('title')
     bullet_content = data.get('bulletContent')
     csv_data = data.get('csvData')
-    originalImageId = data.get('originalImageId')
+    var_2 = data.get('yAxisLabel')
+    var_1 = data.get('xAxisLabel')
     print (csv_data)
     # Decode CSV data
 
@@ -126,8 +131,6 @@ def Picto():
 
     # Assuming the CSV has columns 'name' and 'number'
 
-    var_1 = 'Age'
-    var_2 = 'Percent (%)'
     df.columns = [var_1, var_2 ]
      
 
@@ -136,6 +139,9 @@ def Picto():
 
     # Plotting using the axes object
     ax.bar(df[var_1], df[var_2])
+
+    if 'percent' in var_2 or '%' in var_2:
+        ax.set_ylim(0, 100)
     #ax.set_ylim(0, 100)  # Set y-axis limits
 
     # Add labels using the axes object
@@ -174,6 +180,8 @@ def Picto():
     ax.set_xlabel(var_1)
     ax.set_ylabel(var_2)
     ax.set_title(title)
+    if 'percent' in var_2 or '%' in var_2:
+        ax.set_ylim(0, 100)
 
     fig.savefig('axes_chart.png')
 
@@ -223,7 +231,7 @@ def Picto():
 
     guidance_scale=20
     num_samples = 1
-    steps =30
+    steps =40
 
 
     #generator = torch.Generator(device="cuda").manual_seed(-1) # change the seed to get different results
