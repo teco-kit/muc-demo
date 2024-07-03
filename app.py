@@ -18,7 +18,10 @@ app = Flask(__name__)
 # Load your model
 device = "cuda"
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16"
+    "runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16",
+    safety_checker = None,
+    requires_safety_checker = False
+
 ).to(device)
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -26,7 +29,7 @@ pipeline.enable_xformers_memory_efficient_attention()
 
 key = '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'
 prompt = PromptTemplate.from_template(
-        "extract one object from the following content: {content}. the object should be easy to recognize and paint. answer should be a single word."
+        "extract one object from the following content: {content}. the object should be easy to recognize and paint. your output should only be a single word describing object with no special characters."
     )
 
 model = OpenAI(openai_api_key = key)
@@ -62,7 +65,7 @@ def Chart():
 
     # Plotting using the axes object
     ax.bar(df[var_1], df[var_2])
-    ax.set_ylim(0, 100)  # Set y-axis limits
+    #ax.set_ylim(0, 100)  # Set y-axis limits
 
     # Add labels using the axes object
     ax.set_xlabel(var_1)
@@ -139,7 +142,7 @@ def Picto():
     ax.set_xlabel(var_1)
     ax.set_ylabel(var_2)
     ax.set_title(title)
-    ax.set_ylim(0, 100)
+    #ax.set_ylim(0, 100)
 
 
     fig.savefig('chart.png')
