@@ -1,261 +1,446 @@
 <html>
-
-<head>
+  <head>
     <style>
-        body {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
 
-        .no-decoration {
-            border: none;
-            outline: none;
-            background: none;
-            box-shadow: none;
-            padding: 0;
-            margin: 0;
-            font-family: inherit;
-            font-size: inherit;
-            color: inherit;
-        }
+      .no-decoration {
+        border: none;
+        outline: none;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+      }
 
-        .btn-ppt {
-            color: rgb(182, 72, 42) !important;
-            border: 1px solid lightgray !important;
-            background: #f4f4f4 !important;
-        }
+      .btn-ppt {
+        color: rgb(182, 72, 42) !important;
+        border: 1px solid lightgray !important;
+        background: #f4f4f4 !important;
+      }
 
-        .ppt-card {
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
-            color: lightgray;
-        }
+      .ppt-card {
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 10px;
+        color: lightgray;
+      }
 
-        .ppt-card-active {
-            border: 2px solid rgb(182, 72, 42);
-        }
+      .ppt-card-active {
+        border: 2px solid rgb(182, 72, 42);
+      }
     </style>
     <title>PictographAI</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <!-- Option 1: Include in HTML -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+  </head>
 
-<body>
-    <div class="d-flex flex-column h-100" style="max-height: 100vh;">
-        <img src="navbar.png">
-        <div class="d-flex flex-row flex-fill">
-            <div style="background-color: rgb(231, 231, 230); overflow-y: scroll; padding-left: 5px; padding-right: 5px;"
-                class="d-flex flex-column align-items-center">
-                <div style="width: 130px; height: 73.1px; background-color: white; "
-                    class="ppt-card ppt-card-active d-flex justify-content-center align-items-center">1</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">2</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">3</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">4</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">5</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">6</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">7</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">8</div>
-                <div style="width: 130px; height: 73.1px; background-color: white;"
-                    class="ppt-card d-flex justify-content-center align-items-center mt-3">9</div>
-            </div>
-            <div style="background-color: rgb(247, 247, 247); width: 2px; height: 100%;"></div>
-            <div style="background-color: lightgray; width: 1px; height: 100%;"></div>
-            <div class="d-flex flex-column flex-fill">
-                <div class="d-flex flex-row">
-
-                    <div style="width: 1200; height: 675; margin: 20px; position: relative; border: 1px solid lightgray;"
-                        class="shadow">
-                        <div class="d-flex flex-row align-items-center"
-                            style="position: absolute; left: 30px; top: 20px; width: 1140px; height: 100px; font-size: 60px;">
-                            <input class="no-decoration flex-fill" placeholder="Title"></input>
-                            <img style="height: 50px"
-                                src="https://teco.edu/wp-content/themes/teco/images/teco_trans.png">
-                            <img style="height: 60px"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_KIT.svg/2560px-Logo_KIT.svg.png">
-
-                        </div>
-
-                        <textarea placeholder="Add your text here.." class="no-decoration" id="inputField"
-                            onkeyup="addBullets()"
-                            style="position: absolute; left: 30px; line-height: 1.8em; top: 140px; width: 650px; height: 515px; font-size: 22px;"></textarea>
-                        <div class="d-flex justify-content-center align-items-center"
-                            style="position: absolute; left: 690px; top: 140px; width: 480px; height: 505px; background: lightgray;">
-                            <div style="color: gray; font-family: monospace;">Waiting for data to<br /> generate graph
-                                ...</div>
-                        </div>
-
-                    </div>
-                    <div class="flex-fill d-flex flex-column shadow"
-                        style="padding: 20px; border: 1px solid lightgray; background-color: rgb(236, 236, 236); margin: 0px 0px 0px 0px; max-height: 715px; border-width: 0px 0px 0px 1px; overflow: hidden;">
-                        <div class="d-flex flex-row justify-content-between">
-                            <h5>Bar Chart Data</h5>
-                            <button class="btn btn-ppt">Update Chart</i></button>
-                        </div>
-                        <hr />
-                        <div id="container" class="flex-fill mb-2" style="overflow-y: scroll; overflow-x: hidden;">
-
-                        </div>
-                        <div class="d-flex flex-row justify-content-stretch">
-                            <button class="btn btn-block btn-ppt w-100" onclick="addRow()">+</button>
-
-                        </div>
-                       
-                    </div>
-                </div>
-                <div class="flex-fill w-100 p-3 justify-content-start align-items-center d-flex"
-                    style="background: rgb(240, 240, 241); border: 1px solid lightgray; border-width: 1px 0px 0px 0px; overflow-y: scroll">
-                    <button onclick="generateGraph()" class="btn btn-ppt"
-                        style=" margin-left: 10px; padding-bottom: 20px; width: 190px; height: 100%; font-size: 20px;"><b>Generate Pictograph</b></button>
-                </div>
-            </div>
-
+  <body>
+    <div class="d-flex flex-column h-100" style="max-height: 100vh">
+      <img src="navbar.png" />
+      <div class="d-flex flex-row flex-fill">
+        <div
+          style="
+            background-color: rgb(231, 231, 230);
+            overflow-y: scroll;
+            padding-left: 5px;
+            padding-right: 5px;
+          "
+          class="d-flex flex-column align-items-center"
+        >
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card ppt-card-active d-flex justify-content-center align-items-center"
+          >
+            1
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            2
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            3
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            4
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            5
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            6
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            7
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            8
+          </div>
+          <div
+            style="width: 130px; height: 73.1px; background-color: white"
+            class="ppt-card d-flex justify-content-center align-items-center mt-3"
+          >
+            9
+          </div>
         </div>
+        <div
+          style="background-color: rgb(247, 247, 247); width: 2px; height: 100%"
+        ></div>
+        <div
+          style="background-color: lightgray; width: 1px; height: 100%"
+        ></div>
+        <div class="d-flex flex-column flex-fill">
+          <div class="d-flex flex-row">
+            <div
+              style="
+                width: 1200;
+                height: 675;
+                margin: 20px;
+                position: relative;
+                border: 1px solid lightgray;
+              "
+              class="shadow"
+            >
+              <div
+                class="d-flex flex-row align-items-center"
+                style="
+                  position: absolute;
+                  left: 30px;
+                  top: 20px;
+                  width: 1140px;
+                  height: 100px;
+                  font-size: 60px;
+                "
+              >
+                <input class="no-decoration flex-fill" placeholder="Title" />
+                <img
+                  style="height: 50px"
+                  src="https://teco.edu/wp-content/themes/teco/images/teco_trans.png"
+                />
+                <img
+                  style="height: 60px"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_KIT.svg/2560px-Logo_KIT.svg.png"
+                />
+              </div>
 
-
+              <textarea
+                placeholder="Add your text here.."
+                class="no-decoration"
+                id="inputField"
+                onkeyup="addBullets()"
+                style="
+                  position: absolute;
+                  left: 30px;
+                  line-height: 1.8em;
+                  top: 140px;
+                  width: 650px;
+                  height: 515px;
+                  font-size: 22px;
+                "
+              ></textarea>
+              <div
+                class="d-flex justify-content-center align-items-center"
+                style="
+                  position: absolute;
+                  left: 690px;
+                  top: 140px;
+                  width: 480px;
+                  height: 505px;
+                  background: lightgray;
+                "
+              >
+                <div style="color: gray; font-family: monospace">
+                  Waiting for data to<br />
+                  generate graph ...
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex-fill d-flex flex-column shadow"
+              style="
+                padding: 20px;
+                border: 1px solid lightgray;
+                background-color: rgb(236, 236, 236);
+                margin: 0px 0px 0px 0px;
+                max-height: 715px;
+                border-width: 0px 0px 0px 1px;
+                overflow: hidden;
+              "
+            >
+              <div class="d-flex flex-row justify-content-between">
+                <h5>Bar Chart Data</h5>
+                <button class="btn btn-ppt">Update Chart</button>
+              </div>
+              <hr />
+              <div
+                id="container"
+                class="flex-fill mb-2"
+                style="overflow-y: scroll; overflow-x: hidden"
+              ></div>
+              <div class="d-flex flex-row justify-content-stretch">
+                <button class="btn btn-block btn-ppt w-100" onclick="addRow()">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex-fill w-100 p-3 justify-content-start align-items-center d-flex"
+            style="
+              background: rgb(240, 240, 241);
+              border: 1px solid lightgray;
+              border-width: 1px 0px 0px 0px;
+              overflow-y: scroll;
+            "
+          >
+            <button
+              onclick="generateGraph()"
+              class="btn btn-ppt"
+              style="
+                margin-left: 10px;
+                padding-bottom: 20px;
+                width: 190px;
+                height: 100%;
+                font-size: 20px;
+              "
+            >
+              <b>Generate Pictograph</b>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <div></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script>
-        function addRow() {
-            const container = document.getElementById('container');
-            const row = document.createElement('div');
-            row.className = 'row';
-            row.innerHTML = `
+      let slides = Array.from({ length: 9 }, () => ({
+        title: "",
+        bulletContent: "",
+        chartData: [],
+      }));
+
+      let currentSlideIndex = 0;
+
+      function addRow() {
+        const container = document.getElementById("container");
+        const row = document.createElement("div");
+        row.className = "row";
+        row.innerHTML = `
             <div class="d-flex flex-row mt-3 justify-content-between">
                 <input class="no-decoration " type="text" placeholder="Name">
                 <input class="no-decoration" style="width: 100px" type="number" placeholder="Number">
                 <button class="no-decoration btn btn-ppt" onclick="deleteRow(this)"><i class="bi bi-trash"></i></button>
             </div>
         `;
-            container.append(row);
-        }
+        container.append(row);
+      }
 
-        function deleteRow(button) {
-            const row = button.parentElement.parentElement;
-            row.remove();
-        }
+      function deleteRow(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+      }
 
+      function addBullets() {
+        const inputField = document.getElementById("inputField");
+        const lines = inputField.value.split("\n");
+        let formattedText = "";
 
-        function addBullets() {
-            const inputField = document.getElementById('inputField');
-            const lines = inputField.value.split('\n');
-            let formattedText = '';
-
-            lines.forEach((line, index) => {
-                if (line !== '') {
-                    // Add bullet if the line does not already have one
-                    if (!line.startsWith('•')) {
-                        formattedText += '• ' + line;
-                    } else {
-                        formattedText += line;
-                    }
-                    // Add newline character if it's not the last line
-                    if (index < lines.length - 1) {
-                        formattedText += '\n';
-                    }
-                } else {
-                    // Preserve empty lines
-                    if (index < lines.length - 1) {
-                        formattedText += '\n';
-                    }
-                }
-            });
-
-            inputField.value = formattedText;
-        }
-
-        function generateGraph() {
-            const title = document.querySelector('.no-decoration.flex-fill').value;
-            const bulletContent = document.getElementById('inputField').value;
-
-            const rows = document.querySelectorAll('.row');
-            const data = [];
-            rows.forEach(row => {
-                const inputs = row.querySelectorAll('input');
-                const name = inputs[0].value;
-                const number = inputs[1].value;
-                data.push({ name, number });
-            });
-
-            const csvContent = data.map(e => e.name + "," + e.number).join("\n");
-
-            // Prepare the payload
-            const payload = {
-                title: title,
-                bulletContent: bulletContent,
-                csvData: csvContent
-            };
-
-            // Send the POST request
-            fetch('/inpaint', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then(response => response.json())
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        }
-
-        const cards = document.querySelectorAll('.ppt-card');
-
-        // Add a click event listener to each card
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                // Remove 'ppt-card-active' class from all cards
-                cards.forEach(c => c.classList.remove('ppt-card-active'));
-                // Add 'ppt-card-active' class to the clicked card
-                card.classList.add('ppt-card-active');
-            });
+        lines.forEach((line, index) => {
+          if (line !== "") {
+            // Add bullet if the line does not already have one
+            if (!line.startsWith("•")) {
+              formattedText += "• " + line;
+            } else {
+              formattedText += line;
+            }
+            // Add newline character if it's not the last line
+            if (index < lines.length - 1) {
+              formattedText += "\n";
+            }
+          } else {
+            // Preserve empty lines
+            if (index < lines.length - 1) {
+              formattedText += "\n";
+            }
+          }
         });
 
-        function handleKeyNavigation(event) {
-            if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
-                return;
-            }
-            let activeCard = document.querySelector('.ppt-card-active');
-            if (event.key === 'ArrowUp') {
-                if (activeCard) {
-                    let prevCard = activeCard.previousElementSibling;
-                    if (prevCard && prevCard.classList.contains('ppt-card')) {
-                        activeCard.classList.remove('ppt-card-active');
-                        prevCard.classList.add('ppt-card-active');
-                    }
-                } else {
-                    cards[cards.length - 1].classList.add('ppt-card-active');
-                }
-            } else if (event.key === 'ArrowDown') {
-                if (activeCard) {
-                    let nextCard = activeCard.nextElementSibling;
-                    if (nextCard && nextCard.classList.contains('ppt-card')) {
-                        activeCard.classList.remove('ppt-card-active');
-                        nextCard.classList.add('ppt-card-active');
-                    }
-                } else {
-                    cards[0].classList.add('ppt-card-active');
-                }
-            }
+        inputField.value = formattedText;
+      }
+
+      function generateGraph() {
+        const title = document.querySelector(".no-decoration.flex-fill").value;
+        const bulletContent = document.getElementById("inputField").value;
+
+        const rows = document.querySelectorAll(".row");
+        const data = [];
+        rows.forEach((row) => {
+          const inputs = row.querySelectorAll("input");
+          const name = inputs[0].value;
+          const number = inputs[1].value;
+          data.push({ name, number });
+        });
+
+        const csvContent = data.map((e) => e.name + "," + e.number).join("\n");
+
+        // Prepare the payload
+        const payload = {
+          title: title,
+          bulletContent: bulletContent,
+          csvData: csvContent,
+        };
+
+        // Send the POST request
+        fetch("/inpaint", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => response.json())
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      function saveCurrentSlide() {
+        const title = document.querySelector(".no-decoration.flex-fill").value;
+        const bulletContent = document.getElementById("inputField").value;
+
+        const rows = document.querySelectorAll(".row");
+        const chartData = [];
+        rows.forEach((row) => {
+          const inputs = row.querySelectorAll("input");
+          const name = inputs[0].value;
+          const number = inputs[1].value;
+          chartData.push({ name, number });
+        });
+
+        slides[currentSlideIndex] = {
+          title: title,
+          bulletContent: bulletContent,
+          chartData: chartData,
+        };
+      }
+
+      function loadSlide(index) {
+        currentSlideIndex = index;
+        const slide = slides[currentSlideIndex];
+
+        document.querySelector(".no-decoration.flex-fill").value = slide.title;
+        document.getElementById("inputField").value = slide.bulletContent;
+
+        const container = document.getElementById("container");
+        container.innerHTML = "";
+        slide.chartData.forEach((data) => {
+          const row = document.createElement("div");
+          row.className = "row";
+          row.innerHTML = `
+            <div class="d-flex flex-row mt-3 justify-content-between">
+                <input class="no-decoration " type="text" placeholder="Name" value="${data.name}">
+                <input class="no-decoration" style="width: 100px" type="number" placeholder="Number" value="${data.number}">
+                <button class="no-decoration btn btn-ppt" onclick="deleteRow(this)"><i class="bi bi-trash"></i></button>
+            </div>
+        `;
+          container.append(row);
+        });
+      }
+
+      const cards = document.querySelectorAll(".ppt-card");
+
+      // Add a click event listener to each card
+      cards.forEach((card, index) => {
+        card.addEventListener("click", () => {
+          saveCurrentSlide();
+          // Remove 'ppt-card-active' class from all cards
+          cards.forEach((c) => c.classList.remove("ppt-card-active"));
+          // Add 'ppt-card-active' class to the clicked card
+          card.classList.add("ppt-card-active");
+          loadSlide(index);
+          currentSlideIndex = index;
+        });
+      });
+
+      function handleKeyNavigation(event) {
+        if (
+          document.activeElement.tagName === "INPUT" ||
+          document.activeElement.tagName === "TEXTAREA"
+        ) {
+          return;
         }
+        let activeCard = document.querySelector(".ppt-card-active");
+        if (event.key === "ArrowUp") {
+          saveCurrentSlide();
+          if (currentSlideIndex > 0) {
+            loadSlide(currentSlideIndex - 1);
+          }
+          if (activeCard) {
+            let prevCard = activeCard.previousElementSibling;
+            if (prevCard && prevCard.classList.contains("ppt-card")) {
+              activeCard.classList.remove("ppt-card-active");
+              prevCard.classList.add("ppt-card-active");
+            }
+          } else {
+            cards[cards.length - 1].classList.add("ppt-card-active");
+          }
+        } else if (event.key === "ArrowDown") {
+          saveCurrentSlide();
+          if (currentSlideIndex < cards.length - 1) {
+            loadSlide(currentSlideIndex + 1);
+          }
+          if (activeCard) {
+            let nextCard = activeCard.nextElementSibling;
+            if (nextCard && nextCard.classList.contains("ppt-card")) {
+              activeCard.classList.remove("ppt-card-active");
+              nextCard.classList.add("ppt-card-active");
+            }
+          } else {
+            cards[0].classList.add("ppt-card-active");
+          }
+        }
+      }
 
-        // Add a keydown event listener to the document
-        document.addEventListener('keydown', handleKeyNavigation);
+      // Add a keydown event listener to the document
+      document.addEventListener("keydown", handleKeyNavigation);
     </script>
-</body>
-
+  </body>
 </html>
