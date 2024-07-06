@@ -33,6 +33,12 @@
             .ppt-card-active {
                 border: 2px solid rgb(182, 72, 42);
             }
+            
+            .sidebar {
+                width: 150px; /* Fixed width for the sidebar */
+                min-width: 150px; /* Prevent shrinking */
+                flex-shrink: 0; /* Prevent shrinking */
+            }
         </style>
         <title>PictographAI</title>
         <link
@@ -59,7 +65,7 @@
                         padding-left: 5px;
                         padding-right: 5px;
                     "
-                    class="d-flex flex-column align-items-center"
+                    class="d-flex flex-column align-items-center sidebar"
                 >
                     <div
                         style="
@@ -152,13 +158,6 @@
                         9
                     </div>
                 </div>
-                <div
-                    style="
-                        background-color: rgb(247, 247, 247);
-                        width: 2px;
-                        height: 100%;
-                    "
-                ></div>
                 <div
                     style="
                         background-color: lightgray;
