@@ -33,7 +33,7 @@
             .ppt-card-active {
                 border: 2px solid rgb(182, 72, 42);
             }
-            
+
             .sidebar {
                 width: 150px; /* Fixed width for the sidebar */
                 min-width: 150px; /* Prevent shrinking */
@@ -166,73 +166,103 @@
                     "
                 ></div>
                 <div class="d-flex flex-column flex-fill">
-                    <div class="d-flex flex-row">
-                        <div
-                            style="
-                                width: 1200;
-                                height: 675;
-                                margin: 20px;
-                                position: relative;
-                                border: 1px solid lightgray;
-                            "
-                            class="shadow"
-                        >
+                    <div class="d-flex flex-row flex-fill">
+                        <div class="d-flex flex-column justify-content-center">
                             <div
-                                class="d-flex flex-row align-items-center"
-                                style="
-                                    position: absolute;
-                                    left: 30px;
-                                    top: 20px;
-                                    width: 1140px;
-                                    height: 100px;
-                                    font-size: 60px;
-                                "
-                            >
-                                <input
-                                    class="no-decoration flex-fill"
-                                    placeholder="Title"
-                                />
-                                <img
-                                    style="height: 50px"
-                                    src="https://teco.edu/wp-content/themes/teco/images/teco_trans.png"
-                                />
-                                <img
-                                    style="height: 60px"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_KIT.svg/2560px-Logo_KIT.svg.png"
-                                />
-                            </div>
-
-                            <textarea
-                                placeholder="Add your text here.."
-                                class="no-decoration"
-                                id="inputField"
-                                onkeyup="addBullets()"
-                                style="
-                                    position: absolute;
-                                    left: 30px;
-                                    line-height: 1.8em;
-                                    top: 140px;
-                                    width: 650px;
-                                    height: 515px;
-                                    font-size: 22px;
-                                "
-                            ></textarea>
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                                style="
-                                    position: absolute;
-                                    left: 690px;
-                                    top: 140px;
-                                    width: 480px;
-                                    height: 505px;
-                                    background: lightgray;
-                                "
+                                class="d-flex flex-row justify-content-between"
                             >
                                 <div
-                                    style="color: gray; font-family: monospace"
+                                    style="
+                                        flex-grow: 1;
+                                        aspect-ratio: 16/9;
+                                        padding: 20px;
+                                        margin: 20px;
+                                        background: white;
+                                        display: flex;
+                                        flex-direction: column;
+                                        position: relative;
+                                        border: 1px solid #ccc;
+                                        width: 100%;
+                                    "
+                                    class="shadow"
                                 >
-                                    Waiting for data to<br />
-                                    generate graph ...
+                                    <div
+                                        class="d-flex flex-row justify-content-between align-items-center"
+                                        style="
+                                            position: relative;
+                                            left: 2.5%;
+                                            top: 2.5%;
+                                            width: 95%;
+                                            height: 10%;
+                                            font-size: 60px;
+                                            margin: 10px;
+                                        "
+                                    >
+                                        <input
+                                            class="no-decoration flex-fill"
+                                            placeholder="Title"
+                                            style="width: 50%"
+                                        />
+                                        <div
+                                            class="d-flex flex-row align-items-center"
+                                            style="
+                                                width: 50%;
+                                                justify-content: flex-end;
+                                            "
+                                        >
+                                            <img
+                                                style="height: 50px"
+                                                src="https://teco.edu/wp-content/themes/teco/images/teco_trans.png"
+                                            />
+                                            <img
+                                                style="height: 60px"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_KIT.svg/2560px-Logo_KIT.svg.png"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="flex-row"
+                                        ,
+                                        style="height: 100%; position: relative; margin: 10px;"
+                                    >
+                                        <textarea
+                                            placeholder="Add your text here.."
+                                            class="no-decoration"
+                                            id="inputField"
+                                            onkeyup="addBullets()"
+                                            style="
+                                                position: absolute;
+                                                left: 2.5%;
+                                                top: 5%;
+                                                width: 47.5%;
+                                                height: 95%;
+                                                font-size: 22px;
+                                            "
+                                        ></textarea>
+                                        <div
+                                            class="d-flex justify-content-center align-items-center"
+                                            style="
+                                                position: absolute;
+                                                left: 52.5%;
+                                                top: 5%;
+                                                width: 47.5%;
+                                                height: 95%;
+                                                background: lightgray;
+                                            "
+                                        >
+                                            <div
+                                                style="
+                                                    color: gray;
+                                                    font-family: monospace;
+                                                    padding: 10px;
+                                                "
+                                            >
+                                                Waiting for data to<br />
+                                                generate graph ...
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +273,7 @@
                                 border: 1px solid lightgray;
                                 background-color: rgb(236, 236, 236);
                                 margin: 0px 0px 0px 0px;
-                                max-height: 715px;
+                                min-width: 400px;
                                 border-width: 0px 0px 0px 1px;
                                 overflow: hidden;
                             "
@@ -257,11 +287,6 @@
                                 </button>
                             </div>
                             <hr />
-                            <div
-                                id="container"
-                                class="flex-fill mb-2"
-                                style="overflow-y: scroll; overflow-x: hidden"
-                            ></div>
                             <div
                                 class="d-flex flex-row justify-content-stretch"
                             >
@@ -281,6 +306,8 @@
                             border: 1px solid lightgray;
                             border-width: 1px 0px 0px 0px;
                             overflow-y: scroll;
+                            height: 150px;
+                            max-height: 150px;
                         "
                     >
                         <button
@@ -290,6 +317,7 @@
                                 margin-left: 10px;
                                 padding-bottom: 20px;
                                 width: 190px;
+                                max-height: 300px;
                                 height: 100%;
                                 font-size: 20px;
                             "
@@ -457,6 +485,7 @@
             // Add a click event listener to each card
             cards.forEach((card, index) => {
                 card.addEventListener("click", () => {
+                    console.log("clock");
                     saveCurrentSlide();
                     // Remove 'ppt-card-active' class from all cards
                     cards.forEach((c) => c.classList.remove("ppt-card-active"));
