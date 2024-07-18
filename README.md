@@ -11,7 +11,6 @@ The application also integrates with OpenAI's language models and provides vario
 - **Image Inpainting**: Uses `diffusers` library for inpainting images.
 - **Data Visualization**: Utilizes `matplotlib` for plotting.
 - **Language Model Integration**: Integrates with OpenAI's language models.
-- **File Handling**: Supports file uploads and downloads.
 
 ## Requirements
 
