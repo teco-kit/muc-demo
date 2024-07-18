@@ -27,7 +27,7 @@ pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
 pipeline.enable_xformers_memory_efficient_attention()
 
-key = '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'
+key = ''
 prompt = PromptTemplate.from_template(
         "extract one object from the following content: {content}. the object should be easy to recognize and paint. your output should only be only one or two words long."
     )
