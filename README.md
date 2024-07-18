@@ -30,8 +30,8 @@ The application also integrates with OpenAI's language models and provides vario
 1. **Clone the repository**:
 
     ```sh
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
+    git clone [https://github.com/teco-kit/muc-demo/tree/sarah](https://github.com/teco-kit/muc-demo/tree/sarah)
+    cd muc-demo
     ```
 
 2. **Create a virtual environment**:
