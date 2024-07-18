@@ -1,10 +1,10 @@
 # PictographAI
 
 PictographAI is a presentation assistance tool to processes text, images and raw data from presentation slides to automatically generate contextually appropriate pictographs. Our pipeline uses an LLM agent, a text-guided image-inpainting
-model, and algorithmic post-processing to make sense of the slide contents and generate meaningful, relevant pictographs
+model, and algorithmic post-processing to make sense of the slide contents and generate meaningful, relevant pictographs.
 
 This repository contains a Flask web application of PictographAI that utilizes various machine learning and data processing libraries to perform image inpainting using the `diffusers` library. 
-The application also integrates with OpenAI's language models and provides various functionalities such as image processing and data visualization.
+The application integrates with OpenAI's language models and provides various functionalities such as image processing and data visualization.
 
 ## Features
 
