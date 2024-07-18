@@ -59,7 +59,7 @@ The application also integrates with OpenAI's language models and provides vario
 
 6. **Get an OpenAI API key**:
 
-    Get your OpenAI API key and add it to the `App.py` file from here: [OpenAI API Keys](https://platform.openai.com/api-keys)
+    Get your OpenAI API key and add it to the `App.py` (line 30) file from here: [OpenAI API Keys](https://platform.openai.com/api-keys)
 
 
 
