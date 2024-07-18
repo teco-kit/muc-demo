@@ -43,8 +43,6 @@ fsspec==2024.3.1
 ftfy==6.2.0
 geopandas==0.14.4
 google-auth==2.29.0
-gradio==4.31.5
-gradio_client==0.16.4
 greenlet==3.0.3
 h11==0.14.0
 httpcore==1.0.5
