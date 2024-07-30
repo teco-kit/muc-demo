@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* Full viewport height */
+}
+
+.header {
+  background-color: #333;
+  color: #fff;
+}
+
+.main-content {
+  flex: 1;
+  background: #ddd;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(121, 119, 117);
+  border-radius: 10px;
+}
+
+.ppt-card {
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+  color: lightgray;
+  min-height: 80px;
+  width: 130px;
+  height: 73.1px;
+  background-color: white;
+}
+
+.ppt-card-active {
+  border: 2px solid rgb(182, 72, 42);
+}
+
+.scrollbox {
+  flex-shrink: 0;
+  width: 150px;
+  min-width: 150px;
+  background-color: rgb(231, 231, 230);
+  overflow: auto;
+}
+
+.scrollbox-inner {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.sidebar {
+  display: flex;
+  position: relative;
+  left: 0;
+  background-color: rgb(231, 231, 230);
+  padding-left: 5px;
+  padding-right: 5px;
+  flex-shrink: 0;
+}
+
+html,
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.no-decoration {
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.btn-ppt {
+  color: rgb(182, 72, 42) !important;
+  border: 1px solid lightgray !important;
+  background: #f4f4f4 !important;
+}
